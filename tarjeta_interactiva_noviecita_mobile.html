@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traduciendo a la Nat</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #FF6B6B;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1.5em;
+      text-align: center;
+      margin: 0;
+    }
+    input, button {
+      padding: 0.8em;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      margin: 10px auto;
+      display: block;
+      width: 90%;
+      max-width: 300px;
+    }
+    input {
+      background-color: #1e1e1e;
+      color: #FF6B6B;
+    }
+    button {
+      background-color: #FF6B6B;
+      color: white;
+      cursor: pointer;
+    }
+    .traduccion, .mensaje-final {
+      margin-top: 20px;
+      text-align: left;
+      padding: 1em;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
+      color: #C3FF99;
+    }
+    .emoji {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+    .mensaje-final {
+      display: none;
+      color: #FFD1DC;
+    }
+  </style>
+</head>
+<body>
+  <h2>💌 Traduciendo a la Nat 💌</h2>
+  <p>Ingresá los números separados por coma (ej: <code>116,101,32,97,109,111</code>)</p>
+  <input type="text" id="entrada" placeholder="Tu código secreto...">
+  <button onclick="traducir()">Traducir</button>
+
+  <div class="traduccion" id="traduccion"></div>
+  <div class="emoji" id="emoji" style="display:none;">❤️</div>
+
+  <div id="botones" style="display:none;">
+    <button onclick="mostrarFinal()">Yo también 💖</button>
+    <button onclick="mostrarFinal()">Yo más 🥰</button>
+  </div>
+
+  <div class="mensaje-final" id="mensajeFinal">
+    <p>
+      Gracias por existir, por ser vos, por estar. 💫<br>
+      Cada número, cada letra, cada día contigo tiene sentido. ✨<br><br>
+      Te elijo, sin código, sin lógica... solo con el corazón. ❤️<br><br>
+      <strong>– Tu noviecita linda</strong>
+    </p>
+  </div>
+
+  <script>
+    function traducir() {
+      const entrada = document.getElementById("entrada").value;
+      const numeros = entrada.split(",").map(n => parseInt(n.trim()));
+      let resultado = "<strong>Traducción:</strong><br><br>";
+      let mensaje = "";
+
+      for (let n of numeros) {
+        const letra = String.fromCharCode(n);
+        const simbolo = (n === 32) ? "(espacio)" : letra;
+        resultado += `${n} → ${simbolo}<br>`;
+        mensaje += letra;
+      }
+
+      resultado += `<br><strong>Resultado final:</strong> ${mensaje}`;
+      document.getElementById("traduccion").innerHTML = resultado;
+      document.getElementById("emoji").style.display = "block";
+      document.getElementById("botones").style.display = "block";
+    }
+
+    function mostrarFinal() {
+      document.getElementById("mensajeFinal").style.display = "block";
+    }
+  </script>
+</body>
+</html>
